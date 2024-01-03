@@ -19,5 +19,5 @@ Route::get('/projects/{project}/arb/{language_code}', 'Project\ExportController@
 Route::post('/projects/{project}/import', 'Project\ImportController@import')
     ->name('projects.import');
 
-Route::get('/projects/{project}/statistics', 'Project\StatisticsController@index')
-    ->name('projects.statistics');
+//Route::get('/projects/{project}/statistics', 'Project\StatisticsController@index')
+//    ->name('projects.statistics');

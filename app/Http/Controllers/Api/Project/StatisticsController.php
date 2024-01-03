@@ -24,8 +24,8 @@ class StatisticsController extends BaseController
         $this->languageRepository = $languageRepository;
         $this->projectRepository = $projectRepository;
 
-        $this->middleware('verified');
-        $this->authorizeResource(Project::class);
+        $this->middleware('guest');
+        //$this->authorizeResource(Project::class);
     }
 
     public function index(
@@ -36,11 +36,12 @@ class StatisticsController extends BaseController
         $statistics = [];
         foreach ($languages as $language) {
             $statistics[$language->code] = $statisticsRepository->byProjectAndLanguage($project, $language);
+            $statistics[$language->code]["percent"] = $statistics[$language->code]["percent"] . "%";
         }
 
         return response()->json([
             //'project' => $project,
-            'languages' => $languages,
+            //'languages' => $languages,
             'statistics' => $statistics,
         ]);
     }
